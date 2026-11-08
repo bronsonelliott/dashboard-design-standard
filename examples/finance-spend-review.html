@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Finance Spend Review Example</title>
+<style>
+:root{--paper:#FFFFFF;--surface:#F2F5F7;--ink:#17242C;--secondary:#344955;--muted:#526370;--grid:#D7E0E5;--axis:#647581;
+--s1:#4F6978;--s2:#705F7B;--hi:#005DA6;--q1:#C6D0D8;--q2:#DFE6EB;--q3:#F0F3F5;--good:#21604E;--watch:#765210;--act:#963528}
+*{box-sizing:border-box}
+html{background:#E9EDF0;color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;font-variant-numeric:tabular-nums}
+body{margin:0;padding:24px}
+a{color:var(--hi)}
+.page{max-width:1440px;margin:0 auto}
+.banner{background:var(--paper);border-left:4px solid var(--hi);padding:10px 16px;margin-bottom:16px;font-size:14px;color:var(--secondary)}
+.banner b{color:var(--ink)}
+.dash{background:var(--paper);border:1px solid var(--axis);border-radius:6px;padding:14px 22px 10px}
+.head{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;border-bottom:1px solid var(--grid);padding-bottom:10px}
+.head h1{font-size:24px;line-height:1.15;margin:0;letter-spacing:-.01em}
+.head .q{margin:4px 0 0;color:var(--secondary);font-size:14px}
+.fresh{text-align:right;font-size:13px;color:var(--secondary);white-space:nowrap}
+.fresh b{color:var(--ink)}
+.filters{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center;font-size:13px;color:var(--secondary);padding:8px 0;border-bottom:1px solid var(--grid)}
+.filters b{color:var(--ink);font-weight:650}
+.filters .reset{margin-left:auto;color:var(--hi);text-decoration:underline}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;padding:10px 0 6px;border-bottom:1px solid var(--grid)}
+.kpi h2{font-size:13px;font-weight:650;margin:0;color:var(--secondary)}
+.kpi .v{font-size:26px;font-weight:700;letter-spacing:-.02em;line-height:1.1;margin:2px 0;display:flex;align-items:baseline;gap:10px}
+.kpi .c{font-size:13px;color:var(--secondary);margin:0}
+.kpi .c b{color:var(--ink)}
+svg{display:block;width:100%;height:auto}
+svg text{fill:var(--ink);font-family:inherit}
+svg .tk{font-size:12px;fill:var(--muted)}
+svg .lab{font-size:13px}
+svg .soft{fill:var(--secondary)}
+svg .hi{fill:var(--hi);font-weight:650}
+.bul{margin-top:4px}
+.grid2{display:grid;grid-template-columns:1.55fr 1fr;gap:28px;padding-top:8px}
+.grid3{display:grid;grid-template-columns:1.45fr 1fr 1fr;gap:24px;padding-top:8px}
+.panel h2{font-size:15px;margin:0 0 2px}
+.panel .sub{font-size:12.5px;color:var(--secondary);margin:0 0 4px}
+.dt{border-collapse:collapse;width:100%;font-size:13px}
+.dt th,.dt td{padding:1px 8px 1px 0;border-bottom:1px solid var(--grid);text-align:left;vertical-align:middle}
+.dt thead th{font-weight:650;color:var(--secondary);border-bottom:1px solid var(--axis);font-size:12px}
+.dt .n{text-align:right}
+.dt tbody th{font-weight:600}
+.dt tr.tot th,.dt tr.tot td{font-weight:700;border-bottom:0}
+.spark{width:110px;height:20px}
+.st{font-weight:650;white-space:nowrap;font-size:13px}
+.st.good{color:var(--good)}.st.watch{color:var(--watch)}.st.act{color:var(--act)}
+.foot{border-top:1px solid var(--grid);margin-top:8px;padding-top:6px;font-size:12px;color:var(--secondary);display:grid;grid-template-columns:1fr 1fr;gap:4px 28px}
+.foot b{color:var(--ink)}
+.notes{margin-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.card{background:var(--paper);border:1px solid var(--grid);border-radius:6px;padding:16px 20px}
+.card h2{font-size:18px;margin:0 0 8px}
+.card table{border-collapse:collapse;width:100%;font-size:13.5px}
+.card th,.card td{text-align:left;vertical-align:top;padding:6px 8px 6px 0;border-bottom:1px solid var(--grid)}
+.card thead th{color:var(--secondary);font-size:12.5px;border-bottom:1px solid var(--axis)}
+.card ul{margin:0;padding-left:20px;font-size:14px}.card li{margin-bottom:6px}
+code{font-size:12.5px}
+@media(max-width:1100px){.kpis{grid-template-columns:repeat(2,1fr)}.grid2,.grid3,.notes,.foot{grid-template-columns:1fr}}
+</style></head><body><div class="page">
+<div class="banner"><b>Example dashboard · invented data.</b> Built to the <a href="../index.html">Dashboard Design Standard</a> for a made-up software company.</div>
+<style>.exc{list-style:none;margin:0;padding:0;font-size:13px}.exc li{padding:3px 0;border-bottom:1px solid var(--grid)}</style><section class="dash" aria-label="Finance spend review example">
+<div class="head"><div><h1>Spend review · September 2025 close</h1>
+<p class="q">Is total spend on plan, which departments and cost lines drive any overrun, and does the full-year forecast hold?</p></div>
+<div class="fresh">Actuals through <b>30 Sep 2025</b> (books closed 6 Oct)<br>Forecast: <b>September update</b> · Plan: approved annual plan<br>Example refresh: daily during close</div></div>
+<div class="filters"><span>Period <b>Year to date</b> · Quarter · Month</span><span>Scenario <b>Plan</b> · Forecast</span><span>Department <b>All</b></span>
+<span>Cost type <b>Total spend</b> (OpEx + COGS)</span><span>Entity <b>All</b></span><span>Currency <b>USD</b></span><span class="reset">Reset filters</span></div>
+<div class="kpis">
+<div class="kpi"><h2>Total spend, year to date (Jan–Sep)</h2><p class="v">$318.0M <span class="st good"><span aria-hidden="true">●</span> Within limit</span></p><p class="c">Plan <b>$312.0M</b> · <b>+$6.0M</b> (+1.9%)</p><svg viewBox="0 0 300 46" class="bul" aria-hidden="true"><rect x="6" y="6" width="284" height="18" fill="var(--surface)"/><rect x="6" y="10" width="225.78" height="10" fill="var(--ink)"/><rect x="226.02" y="3" width="3" height="24" fill="var(--hi)"/><line x1="6" y1="27" x2="6" y2="31" stroke="var(--axis)"/><text x="6" y="43" class="tk" text-anchor="start">$0M</text><line x1="148" y1="27" x2="148" y2="31" stroke="var(--axis)"/><text x="148" y="43" class="tk" text-anchor="middle">$200M</text><line x1="290" y1="27" x2="290" y2="31" stroke="var(--axis)"/><text x="290" y="43" class="tk" text-anchor="end">$400M</text></svg></div>
+<div class="kpi"><h2>Operating expense, year to date</h2><p class="v">$228.8M <span class="st good"><span aria-hidden="true">●</span> Within limit</span></p><p class="c">Plan <b>$225.5M</b> · <b>+$3.3M</b> (+1.5%)</p><svg viewBox="0 0 300 46" class="bul" aria-hidden="true"><rect x="6" y="6" width="284" height="18" fill="var(--surface)"/><rect x="6" y="10" width="216.597" height="10" fill="var(--ink)"/><rect x="217.973" y="3" width="3" height="24" fill="var(--hi)"/><line x1="6" y1="27" x2="6" y2="31" stroke="var(--axis)"/><text x="6" y="43" class="tk" text-anchor="start">$0M</text><line x1="148" y1="27" x2="148" y2="31" stroke="var(--axis)"/><text x="148" y="43" class="tk" text-anchor="middle">$150M</text><line x1="290" y1="27" x2="290" y2="31" stroke="var(--axis)"/><text x="290" y="43" class="tk" text-anchor="end">$300M</text></svg></div>
+<div class="kpi"><h2>Cost of goods sold, year to date</h2><p class="v">$89.2M <span class="st watch"><span aria-hidden="true">◆</span> Watch</span></p><p class="c">Plan <b>$86.5M</b> · <b>+$2.7M</b> (+3.1%)</p><svg viewBox="0 0 300 46" class="bul" aria-hidden="true"><rect x="6" y="6" width="284" height="18" fill="var(--surface)"/><rect x="6" y="10" width="211.107" height="10" fill="var(--ink)"/><rect x="209.217" y="3" width="3" height="24" fill="var(--hi)"/><line x1="6" y1="27" x2="6" y2="31" stroke="var(--axis)"/><text x="6" y="43" class="tk" text-anchor="start">$0M</text><line x1="148" y1="27" x2="148" y2="31" stroke="var(--axis)"/><text x="148" y="43" class="tk" text-anchor="middle">$60M</text><line x1="290" y1="27" x2="290" y2="31" stroke="var(--axis)"/><text x="290" y="43" class="tk" text-anchor="end">$120M</text></svg></div>
+<div class="kpi"><h2>Full-year outlook: actual + forecast</h2><p class="v">$426.5M</p><p class="c">Plan <b>$420.0M</b> · <b>+$6.5M</b> (+1.5%)</p><svg viewBox="0 0 300 46" class="bul" aria-hidden="true"><rect x="6" y="6" width="284" height="18" fill="var(--surface)"/><rect x="186.624" y="10" width="61.628" height="10" fill="none" stroke="var(--secondary)" stroke-width="1.4" stroke-dasharray="4 3"/><rect x="6" y="10" width="180.624" height="10" fill="var(--ink)"/><rect x="243.06" y="3" width="3" height="24" fill="var(--hi)"/><line x1="6" y1="27" x2="6" y2="31" stroke="var(--axis)"/><text x="6" y="43" class="tk" text-anchor="start">$0M</text><line x1="148" y1="27" x2="148" y2="31" stroke="var(--axis)"/><text x="148" y="43" class="tk" text-anchor="middle">$250M</text><line x1="290" y1="27" x2="290" y2="31" stroke="var(--axis)"/><text x="290" y="43" class="tk" text-anchor="end">$500M</text></svg></div>
+</div>
+<div class="grid2">
+<div class="panel"><h2>Spend has run above plan every month since February</h2>
+<p class="sub">Total spend by month, $M, one scale from zero. Dark bars: actual. Dashed bars: forecast. Blue ticks: plan.</p><svg viewBox="0 0 760 214" role="img"><title>Total spend by month against plan. Actual January to September, forecast October to December.</title><line x1="56" y1="190" x2="660" y2="190" stroke="var(--ink)"/><text x="48" y="194" class="tk" text-anchor="end">$0M</text><line x1="56" y1="146" x2="660" y2="146" stroke="var(--grid)"/><text x="48" y="150" class="tk" text-anchor="end">$10M</text><line x1="56" y1="102" x2="660" y2="102" stroke="var(--grid)"/><text x="48" y="106" class="tk" text-anchor="end">$20M</text><line x1="56" y1="58" x2="660" y2="58" stroke="var(--grid)"/><text x="48" y="62" class="tk" text-anchor="end">$30M</text><line x1="56" y1="14" x2="660" y2="14" stroke="var(--grid)"/><text x="48" y="18" class="tk" text-anchor="end">$40M</text><text x="81.1667" y="208" class="tk" text-anchor="middle">Jan</text><rect x="65.06" y="44.8" width="32.2133" height="145.2" fill="var(--s1)"/><line x1="60.0267" y1="42.6" x2="102.307" y2="42.6" stroke="var(--hi)" stroke-width="3"/><text x="131.5" y="208" class="tk" text-anchor="middle">Feb</text><rect x="115.393" y="39.96" width="32.2133" height="150.04" fill="var(--s1)"/><line x1="110.36" y1="41.28" x2="152.64" y2="41.28" stroke="var(--hi)" stroke-width="3"/><text x="181.833" y="208" class="tk" text-anchor="middle">Mar</text><rect x="165.727" y="32.04" width="32.2133" height="157.96" fill="var(--s1)"/><line x1="160.693" y1="35.12" x2="202.973" y2="35.12" stroke="var(--hi)" stroke-width="3"/><text x="232.167" y="208" class="tk" text-anchor="middle">Apr</text><rect x="216.06" y="37.76" width="32.2133" height="152.24" fill="var(--s1)"/><line x1="211.027" y1="40.4" x2="253.307" y2="40.4" stroke="var(--hi)" stroke-width="3"/><text x="282.5" y="208" class="tk" text-anchor="middle">May</text><rect x="266.393" y="34.68" width="32.2133" height="155.32" fill="var(--s1)"/><line x1="261.36" y1="37.76" x2="303.64" y2="37.76" stroke="var(--hi)" stroke-width="3"/><text x="332.833" y="208" class="tk" text-anchor="middle">Jun</text><rect x="316.727" y="28.52" width="32.2133" height="161.48" fill="var(--s1)"/><line x1="311.693" y1="32.48" x2="353.973" y2="32.48" stroke="var(--hi)" stroke-width="3"/><text x="383.167" y="208" class="tk" text-anchor="middle">Jul</text><rect x="367.06" y="34.24" width="32.2133" height="155.76" fill="var(--s1)"/><line x1="362.027" y1="38.2" x2="404.307" y2="38.2" stroke="var(--hi)" stroke-width="3"/><text x="433.5" y="208" class="tk" text-anchor="middle">Aug</text><rect x="417.393" y="31.16" width="32.2133" height="158.84" fill="var(--s1)"/><line x1="412.36" y1="36" x2="454.64" y2="36" stroke="var(--hi)" stroke-width="3"/><text x="483.833" y="208" class="tk" text-anchor="middle">Sep</text><rect x="467.727" y="27.64" width="32.2133" height="162.36" fill="var(--s1)"/><line x1="462.693" y1="33.36" x2="504.973" y2="33.36" stroke="var(--hi)" stroke-width="3"/><text x="534.167" y="208" class="tk" text-anchor="middle">Oct</text><rect x="518.06" y="25.88" width="32.2133" height="164.12" fill="var(--q3)" stroke="var(--secondary)" stroke-width="1.3" stroke-dasharray="4 3"/><line x1="513.027" y1="29.84" x2="555.307" y2="29.84" stroke="var(--hi)" stroke-width="3"/><text x="584.5" y="208" class="tk" text-anchor="middle">Nov</text><rect x="568.393" y="23.24" width="32.2133" height="166.76" fill="var(--q3)" stroke="var(--secondary)" stroke-width="1.3" stroke-dasharray="4 3"/><line x1="563.36" y1="26.32" x2="605.64" y2="26.32" stroke="var(--hi)" stroke-width="3"/><text x="634.833" y="208" class="tk" text-anchor="middle">Dec</text><rect x="618.727" y="43.48" width="32.2133" height="146.52" fill="var(--q3)" stroke="var(--secondary)" stroke-width="1.3" stroke-dasharray="4 3"/><line x1="613.693" y1="38.64" x2="655.973" y2="38.64" stroke="var(--hi)" stroke-width="3"/><text x="668" y="42.64" class="lab hi">Plan</text><text x="668" y="60.64" class="lab soft">Forecast</text></svg></div>
+<div class="panel"><h2>Cloud and contractors drive the overrun</h2>
+<p class="sub">Year-to-date actual minus plan by cost category, $M. Sorted by variance.</p><svg viewBox="0 0 470 198" role="img"><title>Year-to-date variance to plan by cost category.</title><line x1="150" y1="6" x2="150" y2="176" stroke="var(--grid)"/><text x="150" y="192" class="tk" text-anchor="middle">−4</text><line x1="202" y1="6" x2="202" y2="176" stroke="var(--grid)"/><text x="202" y="192" class="tk" text-anchor="middle">−2</text><line x1="254" y1="6" x2="254" y2="176" stroke="var(--ink)"/><text x="254" y="192" class="tk" text-anchor="middle">0</text><line x1="306" y1="6" x2="306" y2="176" stroke="var(--grid)"/><text x="306" y="192" class="tk" text-anchor="middle">+2</text><line x1="358" y1="6" x2="358" y2="176" stroke="var(--grid)"/><text x="358" y="192" class="tk" text-anchor="middle">+4</text><line x1="410" y1="6" x2="410" y2="176" stroke="var(--grid)"/><text x="410" y="192" class="tk" text-anchor="middle">+6</text><text x="142" y="21" class="lab" text-anchor="end">Cloud and software</text><rect x="254" y="9" width="106.6" height="16" fill="var(--s1)"/><text x="366.6" y="21" class="lab">+$4.1M</text><text x="142" y="45" class="lab" text-anchor="end">Contractors</text><rect x="254" y="33" width="101.4" height="16" fill="var(--s1)"/><text x="361.4" y="45" class="lab">+$3.9M</text><text x="142" y="69" class="lab" text-anchor="end">Salaries and benefits</text><rect x="254" y="57" width="31.2" height="16" fill="var(--s1)"/><text x="291.2" y="69" class="lab">+$1.2M</text><text x="142" y="93" class="lab" text-anchor="end">Travel and events</text><rect x="254" y="81" width="20.8" height="16" fill="var(--s1)"/><text x="280.8" y="93" class="lab">+$0.8M</text><text x="142" y="117" class="lab" text-anchor="end">Other</text><rect x="241" y="105" width="13" height="16" fill="var(--s1)"/><text x="260" y="117" class="lab">−$0.5M</text><text x="142" y="141" class="lab" text-anchor="end">Facilities</text><rect x="230.6" y="129" width="23.4" height="16" fill="var(--s1)"/><text x="260" y="141" class="lab">−$0.9M</text><text x="142" y="165" class="lab" text-anchor="end">Marketing programs</text><rect x="186.4" y="153" width="67.6" height="16" fill="var(--s1)"/><text x="260" y="165" class="lab">−$2.6M</text></svg></div>
+</div>
+<div class="grid3">
+<div class="panel"><h2>Sales is the only department more than 5% over plan</h2>
+<p class="sub">Operating expense, year to date, $M. Sparklines share one scale; dot = September.</p><table class="dt"><thead><tr><th scope="col">Department</th><th scope="col" class="n">Actual</th><th scope="col" class="n">Plan</th><th scope="col" class="n">Var</th><th scope="col" class="n">Var %</th><th scope="col">Status</th><th scope="col">Jan–Sep</th></tr></thead><tbody><tr><th scope="row">Engineering</th><td class="n">96.4</td><td class="n">94.0</td><td class="n">+2.4</td><td class="n">+2.6%</td><td><span class="st watch"><span aria-hidden="true">◆</span> Watch</span></td><td><svg viewBox="0 0 110 20" class="spark" aria-hidden="true"><polyline points="2.0,4.7 15.0,4.4 28.0,3.9 41.0,4.2 54.0,3.9 67.0,3.5 80.0,3.9 93.0,3.7 106.0,3.0" fill="none" stroke="var(--s1)" stroke-width="1.5"/><circle cx="106.0" cy="3.0" r="2.4" fill="var(--ink)"/></svg></td></tr><tr><th scope="row">Sales</th><td class="n">61.8</td><td class="n">58.5</td><td class="n">+3.3</td><td class="n">+5.6%</td><td><span class="st act"><span aria-hidden="true">▲</span> Act</span></td><td><svg viewBox="0 0 110 20" class="spark" aria-hidden="true"><polyline points="2.0,9.1 15.0,8.9 28.0,8.6 41.0,8.8 54.0,8.6 67.0,8.4 80.0,8.6 93.0,8.4 106.0,8.0" fill="none" stroke="var(--s1)" stroke-width="1.5"/><circle cx="106.0" cy="8.0" r="2.4" fill="var(--ink)"/></svg></td></tr><tr><th scope="row">Marketing</th><td class="n">38.9</td><td class="n">41.0</td><td class="n">−2.1</td><td class="n">−5.1%</td><td><span class="st good"><span aria-hidden="true">●</span> Within limit</span></td><td><svg viewBox="0 0 110 20" class="spark" aria-hidden="true"><polyline points="2.0,12.0 15.0,11.9 28.0,11.7 41.0,11.8 54.0,11.7 67.0,11.6 80.0,11.7 93.0,11.6 106.0,11.4" fill="none" stroke="var(--s1)" stroke-width="1.5"/><circle cx="106.0" cy="11.4" r="2.4" fill="var(--ink)"/></svg></td></tr><tr><th scope="row">Customer Success</th><td class="n">19.6</td><td class="n">19.2</td><td class="n">+0.4</td><td class="n">+2.1%</td><td><span class="st watch"><span aria-hidden="true">◆</span> Watch</span></td><td><svg viewBox="0 0 110 20" class="spark" aria-hidden="true"><polyline points="2.0,14.5 15.0,14.4 28.0,14.3 41.0,14.4 54.0,14.3 67.0,14.3 80.0,14.3 93.0,14.3 106.0,14.2" fill="none" stroke="var(--s1)" stroke-width="1.5"/><circle cx="106.0" cy="14.2" r="2.4" fill="var(--ink)"/></svg></td></tr><tr><th scope="row">G&A</th><td class="n">12.1</td><td class="n">12.8</td><td class="n">−0.7</td><td class="n">−5.5%</td><td><span class="st good"><span aria-hidden="true">●</span> Within limit</span></td><td><svg viewBox="0 0 110 20" class="spark" aria-hidden="true"><polyline points="2.0,15.5 15.0,15.4 28.0,15.4 41.0,15.4 54.0,15.4 67.0,15.3 80.0,15.4 93.0,15.3 106.0,15.2" fill="none" stroke="var(--s1)" stroke-width="1.5"/><circle cx="106.0" cy="15.2" r="2.4" fill="var(--ink)"/></svg></td></tr><tr class="tot"><th scope="row">Operating expense</th><td class="n">228.8</td><td class="n">225.5</td><td class="n">+3.3</td><td class="n">+1.5%</td><td><span class="st good"><span aria-hidden="true">●</span> Within limit</span></td><td></td></tr></tbody></table></div>
+<div class="panel"><h2>Hosting and infrastructure is 9% over plan</h2>
+<p class="sub">Cost of goods sold, year to date, $M.</p><table class="dt"><thead><tr><th scope="col">Component</th><th scope="col" class="n">Actual</th><th scope="col" class="n">Plan</th><th scope="col" class="n">Var %</th><th scope="col">Status</th></tr></thead><tbody><tr><th scope="row">Hosting and infrastructure</th><td class="n">38.2</td><td class="n">35.0</td><td class="n">+9.1%</td><td><span class="st act"><span aria-hidden="true">▲</span> Act</span></td></tr><tr><th scope="row">Payment processing</th><td class="n">14.9</td><td class="n">14.5</td><td class="n">+2.8%</td><td><span class="st watch"><span aria-hidden="true">◆</span> Watch</span></td></tr><tr><th scope="row">Support staff</th><td class="n">26.5</td><td class="n">27.0</td><td class="n">−1.9%</td><td><span class="st good"><span aria-hidden="true">●</span> Within limit</span></td></tr><tr><th scope="row">Third-party licenses</th><td class="n">9.6</td><td class="n">10.0</td><td class="n">−4.0%</td><td><span class="st good"><span aria-hidden="true">●</span> Within limit</span></td></tr><tr class="tot"><th scope="row">COGS</th><td class="n">89.2</td><td class="n">86.5</td><td class="n">+3.1%</td><td><span class="st watch"><span aria-hidden="true">◆</span> Watch</span></td></tr></tbody></table></div>
+<div class="panel"><h2>Needs attention (5)</h2>
+<p class="sub">Items over the Watch cutoff, largest first.</p><ul class="exc"><li><span class="st act"><span aria-hidden="true">▲</span> Act</span> <b>Hosting and infrastructure</b> (COGS) $3.2M, 9.1% over plan</li><li><span class="st act"><span aria-hidden="true">▲</span> Act</span> <b>Sales</b> (department) $3.3M, 5.6% over plan</li><li><span class="st watch"><span aria-hidden="true">◆</span> Watch</span> <b>Payment processing</b> (COGS) $0.4M, 2.8% over plan</li><li><span class="st watch"><span aria-hidden="true">◆</span> Watch</span> <b>Engineering</b> (department) $2.4M, 2.6% over plan</li><li><span class="st watch"><span aria-hidden="true">◆</span> Watch</span> <b>Customer Success</b> (department) $0.4M, 2.1% over plan</li></ul></div>
+</div>
+<div class="foot">
+<div><b>Total spend</b> = operating expense + cost of goods sold. <b>Operating expense</b> = department costs. <b>COGS</b> = the cost to deliver the product.</div>
+<div><b>Bullet graphs:</b> black bar = actual, blue tick = plan, dashed outline = remaining forecast.</div>
+<div><b>Status</b> for spend, where higher is worse: ● Within limit up to 2% over plan, ◆ Watch 2–5% over, ▲ Act more than 5% over.</div>
+<div>Detail: account and supplier lines on a linked detail page, same filters. All values are invented.</div>
+</div>
+</section>
+<div class="notes">
+<div class="card"><h2>The brief</h2><table><tbody>
+<tr><th>Audience</th><td>FP&amp;A and budget owners, during and just after month-end close.</td></tr>
+<tr><th>Decision</th><td>Which budget owners need a spend conversation this month, and whether the full-year forecast needs a change.</td></tr>
+<tr><th>Type</th><td>Analytical monitoring: a fixed starting view for a recurring diagnostic question (section 03).</td></tr>
+<tr><th>Comparisons</th><td>Annual plan for status. Latest forecast for the full-year outlook.</td></tr>
+<tr><th>Cutoffs</th><td>Spend over plan: Within limit up to 2%, Watch 2–5%, Act over 5%. Owned by the FP&amp;A lead.</td></tr>
+</tbody></table></div>
+<div class="card"><h2>How this applies the standard</h2><ul>
+<li>Total spend, OpEx and COGS share one definition each, written in the footer (<code>MEA-01</code>, <code>TXT-03</code>).</li>
+<li>Actuals, forecast and plan look different: solid bars, dashed bars, ticks (<code>VIS-03</code>, <code>DSP-06</code>).</li>
+<li>Higher-is-worse status is spelled out, with shape and word (<code>MEA-04</code>, <code>COL-02</code>).</li>
+<li>The exceptions list answers "who do I call" without a click (<code>INT-01</code>, <code>MEA-05</code>).</li>
+<li>Data-as-of date and close date sit in the header (<code>TXT-03</code>).</li>
+<li>Variance by category is a signed bar chart, not a waterfall of floating bars (<code>VIS-01</code>, <code>DSP-15</code>).</li>
+</ul></div>
+<div class="card"><h2>About the data</h2><ul>
+<li>A made-up mid-size software company with about $420M of planned annual spend.</li>
+<li>Every number is invented, but they add up: departments sum to operating expense, components to COGS, and both to total spend.</li>
+</ul></div>
+<div class="card"><h2>Read more</h2><ul>
+<li><a href="../index.html">The full standard</a>, with the reasoning behind each rule.</li>
+<li><a href="../rules.md">Rule reference</a>: every rule ID in one table.</li>
+<li>Other examples: <a href="sales-review.html">sales review</a>, <a href="hr-workforce-review.html">HR workforce review</a>.</li>
+</ul></div></div>
+</div></body></html>
