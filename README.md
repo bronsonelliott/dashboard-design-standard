@@ -71,7 +71,7 @@ The method follows [Stephen Few](https://www.perceptualedge.com/)'s work on info
 
 The wording, examples and data are all original. Anything that goes beyond Few, like modern accessibility rules, is labeled as an addition in the document.
 
-To go to the source, start at [Perceptual Edge](https://www.perceptualedge.com/), Few's site. It has his articles, examples and book list.
+To go to the source, start at [Perceptual Edge](https://www.perceptualedge.com/), Few's site.
 
 ---
 
