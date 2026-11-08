@@ -92,3 +92,7 @@ The last step was re-tiering the rule levels. The merged draft marked 50 of 64 r
 ## License
 
 [CC BY 4.0](LICENSE). Use it, change it and share it. Just credit this repo.
+
+---
+
+*Created by Bronson Elliott · [LinkedIn](https://www.linkedin.com/in/bronsonelliott) · [Learning Out Loud on Substack](https://bronsonelliott.substack.com)*
