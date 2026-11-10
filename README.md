@@ -17,8 +17,10 @@ A design standard fixes that. Every rule has an ID, a level and a check you can 
 ## What's Inside
 
 - **16 sections**, from what a dashboard is (and when a request is really a report) to a pre-release checklist.
-- **64 rules with stable IDs.** 38 MUST, 24 SHOULD and 2 GUIDANCE.
+- **71 rules with stable IDs.** 43 MUST, 26 SHOULD and 2 GUIDANCE.
 - **A chart gallery** with every recommended display, drawn with invented sample data.
+- **Rules for the screens around the dashboard.** Which rules still apply to a report or an exploration screen, and which drop out.
+- **Finance conventions.** Statement tables, bridges (waterfalls), sign conventions, stock measures and default periods.
 - **Side-by-side corrections** for pie charts, gauges, 3-D bars, truncated axes, rainbow color, dual axes and decorative maps.
 - **A full color palette** with hex values and contrast ratios.
 - **Four dashboard types** (strategic, operational, analytical monitoring and tactical) with a decision guide and a worked example for each.
@@ -79,7 +81,9 @@ To go to the source, start at [Perceptual Edge](https://www.perceptualedge.com/)
 
 I wrote one detailed prompt describing the standard I wanted and gave it to eight AI models. Each output was scored against that prompt for completeness, accuracy, visual quality and how well its rules held up. Then I merged the strongest parts into one document. When two parts disagreed, the higher-scoring model's version won.
 
-The last step was re-tiering the rule levels. The merged draft marked 50 of 64 rules as MUST, so nothing stood out. Now 38 are, picked with a written test that sits in section 2.
+The last step was re-tiering the rule levels. The merged draft marked 50 of 64 rules as MUST, so nothing stood out. Version 1.0 kept 38, picked with a written test that sits in section 2.
+
+Version 1.1 added seven rules and amended five to close gaps that showed up in use. Each new rule got its level from the same test, which brings the count to 43 MUST out of 71. The change log in section 14 lists every affected ID.
 
 ---
 

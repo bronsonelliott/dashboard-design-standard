@@ -36,9 +36,11 @@ def sec_of(pos):
 rules = [(m.start(), m.group(1), m.group(2), clean(m.group(3))) for m in re.finditer(
     r'<div class="rule" id="([^"]+)"><div class="rulehead">.*?<span class="level">(\w+)</span></div><p>(.*?)</p></div>', s, re.S)]
 c = collections.Counter(r[2] for r in rules)
+# The version comes from the page header, so this file never needs a version bump.
+version = re.search(r'<span>Version ([\d.]+)</span>', s).group(1)
 
 out = ['# Rule reference\n',
-       'Every rule in the Dashboard Design Standard (version 1.0.0), by section, plus the color palette. '
+       'Every rule in the Dashboard Design Standard (version %s), by section, plus the color palette. ' % version +
        'The full standard, with the reasoning and every example, is [index.html](index.html). '
        'This page is generated from it by `make_rules.py`, so the two always match.\n',
        '## Rule levels\n',

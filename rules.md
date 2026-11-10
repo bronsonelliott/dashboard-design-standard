@@ -1,6 +1,6 @@
 # Rule reference
 
-Every rule in the Dashboard Design Standard (version 1.0.0), by section, plus the color palette. The full standard, with the reasoning and every example, is [index.html](index.html). This page is generated from it by `make_rules.py`, so the two always match.
+Every rule in the Dashboard Design Standard (version 1.1.0), by section, plus the color palette. The full standard, with the reasoning and every example, is [index.html](index.html). This page is generated from it by `make_rules.py`, so the two always match.
 
 ## Rule levels
 
@@ -10,7 +10,7 @@ Every rule in the Dashboard Design Standard (version 1.0.0), by section, plus th
 
 **How levels are assigned.** MUST when breaking it can mislead a reader, hide a signal the decision needs, block access, or skip a release control. SHOULD when it is a strong default with legitimate exceptions, or a MUST rule elsewhere already enforces its core. GUIDANCE for judgment calls. Use the same test for any new rule.
 
-**Counts:** 64 rules — 38 MUST, 24 SHOULD, 2 GUIDANCE.
+**Counts:** 71 rules — 43 MUST, 26 SHOULD, 2 GUIDANCE.
 
 ## All rules
 
@@ -22,6 +22,7 @@ Every rule in the Dashboard Design Standard (version 1.0.0), by section, plus th
 | PUR-01 | MUST | Name the audience, recurring decision and action. Keep a first-screen item only when the brief identifies the decision it supports. |
 | PUR-02 | SHOULD | Move exhaustive records, open-ended exploration and multi-step workflows to the appropriate companion surface. Link from the relevant summary. |
 | PUR-03 | GUIDANCE | Start a requirements meeting with a recent decision. Ask what evidence made someone act, and sketch only the information they used. |
+| PUR-04 | MUST | Name each screen in the brief as a monitoring view, a report or an exploration screen, by the reader’s job. Review a report or exploration screen against the rules that carry over to it in the tables below, and record the rest as not applicable to that surface. |
 
 ### 03 Choose the dashboard type
 
@@ -44,14 +45,17 @@ Every rule in the Dashboard Design Standard (version 1.0.0), by section, plus th
 | MEA-01 | MUST | Label every displayed measure with its unit and time scope. Give decision measures a named comparison or explicitly state that no valid comparator exists and why. |
 | MEA-02 | MUST | Match the comparator on definition, population, time grain and elapsed period. Label deliberate differences, such as comparing a partial actual with a future target, and show pace or a labeled projection where the decision depends on being on track. |
 | MEA-03 | MUST | Compute rates from their underlying numerator and denominator at the displayed grain. Apply status and thresholds to full precision. Distinguish actual zero, missing, insufficient, partial and stale values. |
-| MEA-04 | MUST | When assigning a rating, define the direction of improvement, inclusive and exclusive cutoffs, owner and action. Use words with a distinct mark and give unknown or stale its own state. |
+| MEA-04 | MUST | When assigning a rating, define the direction of improvement, inclusive and exclusive cutoffs, owner and action. Use words with a distinct mark and give unknown or stale its own state. For an inherited cutoff with no documented owner, follow MEA-08. |
 | MEA-05 | SHOULD | Pair summaries with the exception, spread or segment that can change the decision. For a short ranked list, state the sort, count shown and total or link to the full list. |
+| MEA-06 | SHOULD | Set the default period in the brief. Where none is set, open on the latest complete period at the decision’s grain, never on all periods combined. Name the period on screen, and show an in-progress period only with its elapsed portion labeled and a comparator matched under MEA-02. |
+| MEA-07 | MUST | Show a stock measure, such as open orders or headcount, as a balance at a stated as-of date. A period selection sets that date and must not drop items that began earlier. Do not sum balances across periods. |
+| MEA-08 | MUST | Before release, resolve every inherited rating or color cutoff that has no documented owner. Get it approved under MEA-04, remove it, or keep it labeled as provisional with its cutoffs and direction stated, a named person seeking approval and a review date within 90 days. Remove it if that date passes without approval. |
 
 ### 06 Choose a visualization
 
 | ID | Level | Rule |
 |---|---|---|
-| VIS-01 | MUST | Use a labeled scale that preserves the encoded relationship. Every length bar starts at zero, including each signed bar at the visible zero line. A line or dot may use a labeled focused scale if it preserves the intended comparison. |
+| VIS-01 | MUST | Use a labeled scale that preserves the encoded relationship. Every length bar starts at zero, including each signed bar at the visible zero line. A bridge step may float from its running total under DSP-17. A line or dot may use a labeled focused scale if it preserves the intended comparison. |
 | VIS-02 | MUST | For panels intended to compare magnitudes, align units, time windows, category order and scale domains. If the task compares shapes on independent scales, label each scale and the purpose. |
 | VIS-03 | MUST | Show missing observations as gaps or explicit states. Distinguish forecasts from actuals with a named boundary and a different line style or mark. Use verified intervals when uncertainty could change the decision. |
 | VIS-04 | GUIDANCE | Choose the simplest display that answers the question. Use aligned position or length before area, and separate series into panels when a combined view obstructs comparison. |
@@ -71,6 +75,8 @@ Every rule in the Dashboard Design Standard (version 1.0.0), by section, plus th
 | DSP-14 | SHOULD | Size each rectangle by its share of the parent. Label hierarchy, units and values. Use boundaries and provide a readable ranked table or list. |
 | DSP-15 | SHOULD | Use one visible zero reference. Show sign and units directly and name the baseline. |
 | DSP-16 | SHOULD | Use verified spatial coordinates, show orientation or scale where relevant, and state the decision supported by location. Include a text equivalent. |
+| DSP-17 | MUST | Use a bridge only to explain the difference between two totals of one additive measure. Draw the start and end totals as bars from zero on one unbroken scale. Float each step from the running total, label it with its signed value, and make the steps sum to the difference. Tell increases from decreases without relying on color. |
+| DSP-18 | SHOULD | Keep a financial statement in the line order its readers expect. Indent line items under their parent, and set subtotal and total rows apart with weight or a rule line and a label that names what they total. Where rows carry different units, name the unit in each row label and never total across them. |
 
 ### 07 Displays to avoid or restrict
 
@@ -83,12 +89,12 @@ Every rule in the Dashboard Design Standard (version 1.0.0), by section, plus th
 
 | ID | Level | Rule |
 |---|---|---|
-| LAY-01 | MUST | At the agreed desktop viewport or primary monitoring display, show all essential signals, exceptions and scope in one view at default zoom without scrolling or switching tabs. At narrow widths or zoom, follow ACC-03. |
+| LAY-01 | MUST | At the agreed desktop viewport or primary monitoring display, show all essential signals, exceptions and scope in one view at default zoom without scrolling or switching tabs. A local control may re-cut one display by another dimension when the default cut already answers the question. An essential signal that appears only after a click fails this rule. At narrow widths or zoom, follow ACC-03. |
 | LAY-02 | SHOULD | Align components to a shared grid. Use a smaller gap within a group than between groups. Use whitespace and headings first, adding borders only where alignment or grouping needs them. |
 | LAY-03 | MUST | Place the highest-priority signal or exception before its supporting detail in visual and reading order. Keep a headline measure, its comparison and its status in the same region. |
 | LAY-04 | SHOULD | Put shared scope controls next to the heading and local controls inside their group. Preserve labels and reading order when the layout reflows. |
 | LAY-05 | SHOULD | Keep detail pages out of the critical overview path. Name the destination, preserve applicable scope on entry, and provide a predictable return to the same overview state. |
-| LAY-06 | SHOULD | Show no more than nine data items on the primary view. Count a small-multiples set or a sparkline table as one item. |
+| LAY-06 | SHOULD | Show no more than nine data items on the primary view. Count a small-multiples set, a sparkline table or one financial statement as one item. |
 
 ### 09 Color standards
 
@@ -104,9 +110,10 @@ Every rule in the Dashboard Design Standard (version 1.0.0), by section, plus th
 
 | ID | Level | Rule |
 |---|---|---|
-| TYPF-01 | SHOULD | Use one readable sans-serif family. At the design viewport, start at 24–32 CSS px for the page title, 24–36 for primary values, 16–20 for section titles, 14–16 for data and controls, and 12–14 for secondary notes and ticks. Resolve crowding by removing redundant content. |
+| TYPF-01 | SHOULD | Use one readable sans-serif family. At the design viewport, start at 24–32 CSS px for the page title, 24–36 for primary values, 16–20 for section titles, 14–16 for data and controls, and 12–14 for secondary notes and ticks. A dense table may set its cells at 13 px when it meets the conditions below. Resolve crowding by removing redundant content first. |
 | TYPF-02 | SHOULD | Right-align numeric table cells within a column and use tabular digits where supported. Keep the same units, precision and sign convention within a comparable series or column. |
 | TYPF-03 | MUST | Display units and time labels without ambiguity. Use the dashboard’s declared locale and currency. Apply display rounding only after calculation and preserve exact source precision in authorized detail when the decision requires it. |
+| TYPF-04 | MUST | Use one style for negative numbers across a dashboard, either a minus sign or parentheses. State what the sign of each variance means, either the arithmetic difference or better/(worse), and apply that meaning to every row, including cost lines where lower is better. |
 
 ### 11 Text, titles and labels
 
